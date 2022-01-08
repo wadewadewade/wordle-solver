@@ -4,7 +4,7 @@ const wordList = ["cigar","rebut","sissy","humph","awake","blush","focal","evade
 const matchList = ["pluck", "staff", "shoot", "shart"] 
 
 // any we are sure of
-let greenString = "s000f"
+let greenString = "s0a0f"
 
 // any we are sure they are not
 let pos1Yellow = []
@@ -18,74 +18,38 @@ let greyedOut = "o"
 
 ///// start function
 
-// check if the
+// check if the word contains any known bad letters
 const redTest = (i, rStr) => {
     for (k = 0; k < rStr.length; k++) { // loop through each of the known bad letters
-        if (matchList[i].indexOf(rStr[k]) > -1) {
-            // fails the red test
-            console.log(matchList[i] + " failed because of " + rStr[k]);
-            return true;
-            // this code works
+        if (matchList[i].indexOf(rStr[k]) > -1) { // fails the red test
+            return true; // exit the function
         }
     }
 }
 
+const greenTest = (gStr, i, j) => {
+    if (gStr[j] != 0 && matchList[i][j] != gStr[j]) { // if there is a known letter at that point check that it doesn't not match
+        return true; // exit the function
+    }
+}
+
+const letterLoop = (i, gStr) => {
+    for (j = 0; j < 5; j++){ // loop through each letter
+        if (greenTest(gStr, i, j)) return true;
+};
+};
+
 const wordMatch = (gStr, rStr, y1, y2, y3, y4, y5) => {
-    console.log("Going to check these words:" + [matchList]);
     let potentialSolutions = []; // initialise list of potential solutions
     
     for (i = 0; i < matchList.length; i++) {  // loop through each word
-        console.log("Start checking " + matchList[i]);
-        // check none of the known bad letters are in the word
-        // if they are then go to next word in the list
+        // console.log("Start checking " + matchList[i]);
         
-        if (redTest(i, rStr)) continue;
-        
-        console.log(matchList[i] + " doesn't have any non matching letters");
-
-        for (j = 0; j < 4; j++){ // loop through each letter
-            // green test
-            if (gStr[j] != 0 && matchList[i][j] != gStr[j]) { // if there is a known letter at that point check that it doesn't not match
-                // fails the green test
-            } else {
-                // passes
-            }
-            // green test end
-
-            //// potentially remove - start
-            // // red test
-            // for (k = 0; k < rStr.length; k++) { // loop through each of the known bad letters
-            //     if (matchList[i][j] === rStr[k]) {
-            //         // fails the red test
-            //         // this code works
-            //     }
-            // }
-            //// potentially remove - end
-
-            // individual letter test
-            // switch (j) {
-            //     case 0:
-            //         break;
-            //     case 1:
-            //         break;
-            //     case 2:
-            //         break;
-            //     case 3:
-            //         for (l = 0; l < y4.length; l++) {
-            //             if(y4[0] === matchList[i][j]) {
-            //                 console.log("a break on " + matchList[i]);
-            //             }
-            //         }
-            //         break;
-            //     case 4: 
-            //         break;
-                
-            // }
-        }
-        // success = 
-        // potentialSolutions.push(matchList[i]);
-    }
-    // console.log(potentialSolutions)
+        if (redTest(i, rStr)) continue; // if it has non matching letters then next
+        if (letterLoop (i, gStr)) continue; // if it has non matching green letters then next
+        potentialSolutions.push(matchList[i]); // otherwise add to list
+    };
+    console.log(potentialSolutions); // print list
 };
 
 wordMatch(greenString, greyedOut, pos1Yellow, pos2Yellow, pos3Yellow, pos4Yellow, pos5Yellow);
