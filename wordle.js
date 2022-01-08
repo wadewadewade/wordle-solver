@@ -13,6 +13,10 @@ let pos3Yellow = []
 let pos4Yellow = ["r"]
 let pos5Yellow = []
 
+// TO-DO:
+// 1. check that yellow letters aren't at that position
+// 2. check that yellow letters are at other positions that aren't green
+
 // any we are sure don't exist
 let greyedOut = "o"
 
