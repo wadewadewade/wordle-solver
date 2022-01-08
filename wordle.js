@@ -7,15 +7,16 @@ const matchList = ["pluck", "staff", "shoot", "shart"]
 let greenString = "s0a0f"
 
 // any we are sure they are not
-let pos1Yellow = []
-let pos2Yellow = []
-let pos3Yellow = []
-let pos4Yellow = ["r"]
-let pos5Yellow = []
+let yellowLetters = [
+    "",
+    "",
+    "",
+    "r",
+    "",
+]
 
 // TO-DO:
-// 1. check that yellow letters aren't at that position
-// 2. check that yellow letters are at other positions that aren't green
+// 1. check that yellow letters are at other positions that aren't green
 
 // any we are sure don't exist
 let greyedOut = "o"
@@ -23,37 +24,44 @@ let greyedOut = "o"
 ///// start function
 
 // check if the word contains any known bad letters
-const redTest = (i, rStr) => {
-    for (k = 0; k < rStr.length; k++) { // loop through each of the known bad letters
-        if (matchList[i].indexOf(rStr[k]) > -1) { // fails the red test
+const redTest = (whatToCheck, badLetters) => { // taking an input of the thing to check, and a string to check against
+    for (k = 0; k < badLetters.length; k++) { // loop through each of the known bad letters
+        if (whatToCheck.indexOf(badLetters[k]) > -1) { // fails the red test
             return true; // exit the function
         }
     }
 }
 
-const greenTest = (gStr, i, j) => {
-    if (gStr[j] != 0 && matchList[i][j] != gStr[j]) { // if there is a known letter at that point check that it doesn't not match
+const letterTest = (yStr, gStr, i, j) => {
+    if (gStr[j] != 0 && matchList[i][j] != gStr[j]) { // if there is a known letter at that point check that it doesn't mismatch
         return true; // exit the function
+    }
+    if (redTest(matchList[i], yStr[i])) { // checking against the yellow list
+        return true;
     }
 }
 
-const letterLoop = (i, gStr) => {
+const yellowTestNoMatch = (yStr, i, j) => { // check yellow letters aren't at that position
+    // for each position in matchList[i], check that none of the words in the string at yStr[i] are there
+};
+
+const letterLoop = (i, gStr, yStr) => {
     for (j = 0; j < 5; j++){ // loop through each letter
-        if (greenTest(gStr, i, j)) return true;
+        if (letterTest(yStr, gStr, i, j)) return true;
 };
 };
 
-const wordMatch = (gStr, rStr, y1, y2, y3, y4, y5) => {
+const wordMatch = (gStr, rStr, yStr) => {
     let potentialSolutions = []; // initialise list of potential solutions
     
     for (i = 0; i < matchList.length; i++) {  // loop through each word
         // console.log("Start checking " + matchList[i]);
         
-        if (redTest(i, rStr)) continue; // if it has non matching letters then next
-        if (letterLoop (i, gStr)) continue; // if it has non matching green letters then next
+        if (redTest(matchList[i], rStr)) continue; // if it has non matching letters then next
+        if (letterLoop (i, gStr, yStr)) continue; // if it has non matching green letters then next
         potentialSolutions.push(matchList[i]); // otherwise add to list
     };
     console.log(potentialSolutions); // print list
 };
 
-wordMatch(greenString, greyedOut, pos1Yellow, pos2Yellow, pos3Yellow, pos4Yellow, pos5Yellow);
+wordMatch(greenString, greyedOut, yellowLetters);
