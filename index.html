@@ -12,23 +12,29 @@
     <div class="game-container">
         Green:
         <div class="game-row">
-            <input type="text" id="G1" maxlength="1" class="tile green">
-            <input type="text" id="G2" maxlength="1" class="tile green">
-            <input type="text" id="G3" maxlength="1" class="tile green">
-            <input type="text" id="G4" maxlength="1" class="tile green">
-            <input type="text" id="G5" maxlength="1" class="tile green">
+            <input type="text" id="G1" maxlength="1" class="tile greentile">
+            <input type="text" id="G2" maxlength="1" class="tile greentile">
+            <input type="text" id="G3" maxlength="1" class="tile greentile">
+            <input type="text" id="G4" maxlength="1" class="tile greentile">
+            <input type="text" id="G5" maxlength="1" class="tile greentile">
         </div>
 
+        Yellow:
         <div class="game-row">
-            <input type="text" maxlength="1" class="tile">
-            <input type="text" maxlength="1" class="tile">
-            <input type="text" maxlength="1" class="tile">
-            <input type="text" maxlength="1" class="tile">
-            <input type="text" maxlength="1" class="tile">
+            <input type="text" id="Y1" maxlength="4" class="tile">
+            <input type="text" id="Y2" maxlength="4" class="tile">
+            <input type="text" id="Y3" maxlength="4" class="tile">
+            <input type="text" id="Y4" maxlength="4" class="tile">
+            <input type="text" id="Y5" maxlength="4" class="tile">
+        </div>
+
+        Red:
+        <div class="game-row">
+            <input type="text" id="R1" maxlength="25" class="tile">
         </div>
     </div>
 
-    <button onClick="getValues()">Click me</button>
+    <button onClick="wordMatch()">Click me</button>
 <div class="output">Potential guesses:</div>
     
 </body>

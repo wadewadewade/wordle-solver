@@ -4,33 +4,43 @@ let matchList = ["cigar","rebut","sissy","humph","awake","blush","focal","evade"
 let gStr = "" 
 
 // any we are sure they are not
-let yArr = [
-    "",
-    "",
-    "",
-    "",
-    "",
-]
+let yArr = []
 
 // any we are sure don't exist
 let rStr = ""
 
-const greenValues = () => {
+const getGreenValues = () => {
     gStr = ""
     for (i = 1; i < 6; i++) {
         let id = "G" + i
         if(document.getElementById(id).value.length > 0){
-            gStr += document.getElementById("G" + i).value
+            gStr += document.getElementById(id).value
         } else {
             gStr += 0
         }
     }
-    console.log(gStr);
 };
+
+const getYellowValues = () => {
+    for (y = 1; y < 6; y++) {
+        let id = "Y" + y
+        if(document.getElementById(id).value.length > 0){
+            yArr.push(document.getElementById(id).value)
+        } else {
+            yArr.push("")
+        }    }
+};
+
+const getRedValues = () => {
+    rStr = document.getElementById("R1").value
+};
+
 
 // set all the known values
 const getValues = () => {
-    greenValues();
+    getGreenValues();
+    getYellowValues();
+    getRedValues();
 }
 
 ///// start function
@@ -66,13 +76,6 @@ const greenTest = (i) => {
 };
 
 const yellowTestPos = (checkWord) => {
-    // nonGreenLetters = ""; // all the remaining letters in the potential solution
-    // for (q = 0; q < 5; q++) { // loop through each letter of the match word to create a new word
-    //     if(gStr[q] == 0) {
-    //         nonGreenLetters = nonGreenLetters + checkWord[q]
-    //     }
-    // }
-    // now I have every letter to match from and to - every letter in yellowAsString must be in the main word
 
     for (q = 0; q < yellowAsString.length; q++) {
         if(checkWord.indexOf(yellowAsString[q]) === -1) {
@@ -89,8 +92,11 @@ const wordMatch = () => {
     getValues();
 
     let potentialSolutions = []; // initialise list of potential solutions
-
-    yellowAsString = yArr.join(''); // all the letters to match to - this is the problem. Change to only include letters from yArr with no known green letter
+    // console.log("Yellow array is:")
+    // console.log(yArr);
+    yellowAsString = yArr.join(''); // all the letters to match to
+    // console.log(yellowAsString);
+    // console.log(gStr + " " + rStr);
 
     for (i = 0; i < matchList.length; i++) {  // loop through each word
         if (redTest(matchList[i], rStr)) continue; // if it has non matching letters then next
