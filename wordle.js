@@ -51,7 +51,6 @@ const getValues = () => {
 const greyTest = (whatToCheck, badLetters) => { // taking an input of the thing to check, and a string to check against
     for (k = 0; k < badLetters.length; k++) { // loop through each of the known bad letters
         if (whatToCheck.indexOf(badLetters[k]) > -1) {
-            // console.log(whatToCheck + "greyTest");
             return true; // exit the function
         }
     }
@@ -61,7 +60,6 @@ const yellowTestNoMatch = () => { // check yellow letters aren't at that positio
     for (r = 0; r < 5; r++) { // loop through each position in the yellow list
         if (yArr[r] != undefined) { // if there is a string there
             if (greyTest(matchList[i][r], yArr[r])) {
-                // console.log("yellowtestnomatch");
                 return true;
             }
         }
@@ -71,7 +69,6 @@ const yellowTestNoMatch = () => { // check yellow letters aren't at that positio
 const greenTest = (i) => {
     for (j = 0; j < 5; j++){ // loop through each letter
         if (gStr[j] != 0 && matchList[i][j] != gStr[j]) { // if there is a known letter at that point check that it doesn't mismatch
-            // console.log("greentest")
             return true; // exit the function
         }
     };
@@ -81,13 +78,15 @@ const yellowTestPos = (checkWord) => {
 
     for (q = 0; q < yellowAsString.length; q++) {
         if(checkWord.indexOf(yellowAsString[q]) === -1) {
-            // console.log(checkWord + " nongreenletters " + yellowAsString + " vs " + nonGreenLetters);
             return true;
         }
     }
 
 };
 
+const publishAnswers = (output) => {
+    document.getElementById("answers").innerText = output;
+};
 
 const wordMatch = () => {
     initaliseValues(); // set values to 0
@@ -99,5 +98,6 @@ const wordMatch = () => {
         if (yellowTestNoMatch (yArr)) continue; // if there aren't any yellows in the wrong place
         potentialSolutions.push(matchList[i]); // otherwise add to list
     };
+    publishAnswers(potentialSolutions);
     console.log(potentialSolutions); // print list
 };

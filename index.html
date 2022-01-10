@@ -9,9 +9,11 @@
     <title>Wordle solver</title>
 </head>
 <body>
+    <div class="header">Wordle solver</div>
     <div class="game-container">
         Green:
         <div class="game-row">
+            <!-- https://stackoverflow.com/questions/176626/java-script-to-edit-page-content-on-the-fly -->
             <input type="text" id="G1" maxlength="1" class="tile greentile">
             <input type="text" id="G2" maxlength="1" class="tile greentile">
             <input type="text" id="G3" maxlength="1" class="tile greentile">
@@ -35,8 +37,11 @@
     </div>
 
     <button onClick="wordMatch()">Click me</button>
-<div class="output">Potential guesses:</div>
-    
+<div class="output">Potential guesses: </div><div id="answers"></div>
+<div class="spacer"></div>
+    <div>By <a href="https://twitter.com/chrswde" target="_blank">Chris Wade</a></div>
+    <div class="spacer"></div>
+    <div><script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="chriswade" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script></div>
 </body>
 </html>
 
