@@ -16,6 +16,10 @@ div {
     font-size: 30px;
 }
 
+.output {
+    display: flex;
+    overflow-wrap: break-word;
+}
 .game-container {
     display: flex;
     padding-top: 3rem;
