@@ -88,9 +88,17 @@ const publishAnswers = (output) => {
     document.getElementById("answers").innerText = output;
 };
 
+const getTestValues = () => { // new function for mobile, using known values 
+    gStr = "s000y"
+    rStr = "f"
+    yArr = ["","","p","",""]
+    yellowAsString = yArr.join(''); // all the letters to match to
+};
+
 const wordMatch = () => {
     initaliseValues(); // set values to 0
     getValues(); // get new values
+    getTestValues(); // which we then ignore, for testing
     for (i = 0; i < matchList.length; i++) {  // loop through each word
         if (greyTest(matchList[i], rStr)) continue; // if it has non matching letters then next
         if (greenTest (i, gStr, yArr)) continue; // if it has non matching green letters then next
