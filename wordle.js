@@ -106,6 +106,7 @@ const wordMatch = () => {
         if (yellowTestNoMatch (yArr)) continue; // if there aren't any yellows in the wrong place
         potentialSolutions.push(matchList[i]); // otherwise add to list
     };
-    publishAnswers("gStr: " + gStr + " yArr: " + yArr + " yellowAsString: " + yellowAsString + " rStr: " + rStr + ". Solutions: " + potentialSolutions);
+    // publishAnswers("gStr: " + gStr + " yArr: " + yArr + " yellowAsString: " + yellowAsString + " rStr: " + rStr + ". Solutions: " + potentialSolutions);
+    publishAnswers(potentialSolutions);
     // alert(potentialSolutions); // print list
 };
