@@ -99,5 +99,5 @@ const wordMatch = () => {
         potentialSolutions.push(matchList[i]); // otherwise add to list
     };
     publishAnswers(potentialSolutions);
-    console.log(potentialSolutions); // print list
+    alert(potentialSolutions); // print list
 };
