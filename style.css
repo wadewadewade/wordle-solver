@@ -67,3 +67,9 @@ div {
     box-sizing: border-box;
     text-transform: uppercase;
   }
+
+  @media only screen and (max-width: 600px) {
+    .tile {
+      margin: 0px;
+    }
+  }
