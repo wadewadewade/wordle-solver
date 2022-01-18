@@ -98,7 +98,7 @@ const getTestValues = () => { // new function for mobile, using known values
 const wordMatch = () => {
     initaliseValues(); // set values to 0
     getValues(); // get new values
-    getTestValues(); // which we then ignore, for testing
+    // getTestValues(); // which we then ignore, for testing
     for (i = 0; i < matchList.length; i++) {  // loop through each word
         if (greyTest(matchList[i], rStr)) continue; // if it has non matching letters then next
         if (greenTest (i, gStr, yArr)) continue; // if it has non matching green letters then next
@@ -106,6 +106,6 @@ const wordMatch = () => {
         if (yellowTestNoMatch (yArr)) continue; // if there aren't any yellows in the wrong place
         potentialSolutions.push(matchList[i]); // otherwise add to list
     };
-    publishAnswers(potentialSolutions);
+    publishAnswers("gStr: " + gStr + " yArr: " + yArr + " yellowAsString: " + yellowAsString + " rStr: " + rStr + ". Solutions: " + potentialSolutions);
     // alert(potentialSolutions); // print list
 };
